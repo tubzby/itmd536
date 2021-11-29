@@ -12,22 +12,32 @@ from flask_ckeditor import CKEditorField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
 
-from comet.models import Category
+from comet.models import Category, User
 
 
 class RegisterForm(FlaskForm):
     username = StringField(
-        validators=[DataRequired(message="The username can't be empty."),
-                    Length(1, 20, message='The length should be between 1 and 20.')])
-    email = StringField(validators=[DataRequired(), Email(message='Invaild email format.'), Length(1, 256)])
-    password = PasswordField(validators=[DataRequired(), Length(1, 128)])
-    password2 = PasswordField(validators=[DataRequired(), Length(1, 128), EqualTo('password')])
+        validators=[DataRequired(message="Username is required"),
+                    Length(5, 30, message='Username length should be between 5 and 20')])
+    email = StringField(
+        validators=[DataRequired(message='Email is required'), Email(message='The email is wrong'),
+                    Length(10, 100, message='Email length should be between 10 and 100')])
+    password = PasswordField(validators=[DataRequired(message=f'Password is required'),
+                                         Length(6, 128, message='Password length should be between 6 and 128')])
+    password2 = PasswordField(
+        validators=[DataRequired(message=f'Password is required'),
+                    Length(6, 128, message='Password length should be between 6 and 128'),
+                    EqualTo('password', message='Password repetition must be equal to password')])
+
+    def validate_email(self, field):
+        if User.query.filter_by(email=field.data).first():
+            raise ValidationError('The mailbox has been registered')
 
 
 class LoginForm(FlaskForm):
     email = StringField(
-        validators=[DataRequired(message="The email can't be empty."), Email(message='Invaild email format.')])
-    password = PasswordField(validators=[DataRequired(message="The password can't be empty.")])
+        validators=[DataRequired(message="The email can't be empty"), Email(message='Invaild email format')])
+    password = PasswordField(validators=[DataRequired(message="The password can't be empty")])
     remember = BooleanField()
 
 
