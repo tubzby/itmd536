@@ -1,0 +1,3 @@
+FLASK_APP=comet
+FLASK_RUN_PORT=5000
+FLASK_ENV=development

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container h-100">
+    <div class="row h-100 page-header justify-content-center align-items-center">
+        <h1 class="text-center">Sign up</h1>
+    </div>
+    <div class="row h-100 justify-content-center align-items-center">
+
+        <form action="{{ url_for('auth.register') }}" method="POST"
+              class="form col-6" role="form">
+
+            <div class="form-group required"><label class="form-control-label" for="username">Username</label>
+
+                <input class="form-control" id="username" name="username" type="text"
+                       value="{{ form.data.username | default('', true)}}"
+                       placeholder="Username">
+
+            </div>
+
+            <div class="form-group required"><label class="form-control-label" for="email">Email</label>
+
+                <input class="form-control" id="email" name="email" type="text"
+                       value="{{ form.data.email | default('', true)}}"
+                       placeholder="Email"/>
+
+            </div>
+
+
+            <div class="form-group required"><label class="form-control-label" for="password">Password</label>
+
+                <input class="form-control" id="password" name="password" type="password"
+                       value="{{ form.data.password | default('', true)}}" placeholder="Password">
+
+            </div>
+
+
+            <div class="form-group required"><label class="form-control-label"
+                                                    for="password2">Password(Repetition)</label>
+
+                <input class="form-control" id="password2" name="password2" type="password"
+                       value="{{ form.data.password2 | default('', true)}}" placeholder="Password(Repetition)">
+
+            </div>
+
+
+            <input class="btn btn-primary btn-md" id="submit" name="submit" type="submit" value="Sign up">
+
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}{% endblock %}
