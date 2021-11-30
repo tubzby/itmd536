@@ -13,11 +13,10 @@ import sys
 # base dir
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-print(BASE_DIR)
+# print(BASE_DIR)
 
 # SQLite URI adapter
 WIN_OS = sys.platform.startswith('win')
-
 
 if WIN_OS:
     prefix = 'sqlite:///'
@@ -43,6 +42,12 @@ class DevelopmentConfig(BaseConfig):
     WTF_CSRF_ENABLED = False
 
 
+class TestingConfig(BaseConfig):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+
+
 config_dict = {
-    'development': DevelopmentConfig
+    'development': DevelopmentConfig,
+    'testing': TestingConfig
 }
