@@ -4,8 +4,7 @@ COPY . /comet/
 
 WORKDIR /comet
 
-RUN pip3 install -r requirements.txt && flask db init && flask db migrate && flask db upgrade \
-    && flask forge
+RUN pip3 install -r requirements.txt && flask db init && flask init-db && flask forge
 
 
 EXPOSE 5000
