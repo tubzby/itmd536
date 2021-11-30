@@ -103,3 +103,15 @@ def _register_commands(app):
         fake_posts(post)
 
         click.echo('Done.')
+
+    @app.cli.command()
+    @click.option('--drop', is_flag=True, help='Create db after drop.')
+    def init_db(drop):
+
+        if drop:
+            click.confirm(f'This action will delete the database, do you want to continue?', abort=True)
+            db.drop_all()
+            click.echo(f'delete tables.')
+
+        db.create_all()
+        click.echo(f'Initializing the database.')
