@@ -5,8 +5,20 @@
 
 
 <div class="page-header">
-    <h1 class="display-3">Quokka</h1>
-    <h4 class="text-muted">&nbsp;No, I&#39;m the real thing.</h4>
+    <h1 class="display-3">
+        {% if current_user.is_authenticated %}
+            {{ current_user.blog_title }}
+        {% else %}
+            Comet
+        {% endif %}
+    </h1>
+    <h4 class="text-muted">
+        {% if current_user.is_authenticated %}
+            {{ current_user.blog_sub_title }}
+        {% else %}
+            &nbsp;No, I&#39;m the real thing.
+        {% endif %}
+    </h4>
 </div>
 <div class="row">
     <div class="col-sm-8">
