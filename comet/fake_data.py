@@ -38,6 +38,8 @@ def fake_categories(count=10):
     for index in range(count):
         category = Category()
         category.name = fake.word()
+        category.description = fake.sentence()
+        category.created_time = fake.date_this_year()
 
         db.session.add(category)
 

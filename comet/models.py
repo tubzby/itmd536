@@ -36,6 +36,8 @@ class User(db.Model, UserMixin):
 class Category(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(50), unique=True)
+    description = db.Column(db.String(128))
+    created_time = db.Column(db.DateTime, default=datetime.utcnow)
 
     posts = db.relationship('Post', back_populates='category', cascade='all, delete-orphan')
 
