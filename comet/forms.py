@@ -23,10 +23,10 @@ class RegisterForm(FlaskForm):
         validators=[DataRequired(message='Email is required'), Email(message='The email is wrong'),
                     Length(10, 100, message='Email length should be between 10 and 100')])
     password = PasswordField(validators=[DataRequired(message=f'Password is required'),
-                                         Length(6, 128, message='Password length should be between 6 and 128')])
+                                         Length(6, 18, message='Password length should be between 6 and 18')])
     password2 = PasswordField(
         validators=[DataRequired(message=f'Password is required'),
-                    Length(6, 128, message='Password length should be between 6 and 128'),
+                    Length(6, 18, message='Password length should be between 6 and 18'),
                     EqualTo('password', message='Password repetition must be equal to password')])
 
     def validate_email(self, field):
@@ -36,8 +36,9 @@ class RegisterForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     email = StringField(
-        validators=[DataRequired(message="The email can't be empty"), Email(message='Invaild email format')])
-    password = PasswordField(validators=[DataRequired(message="The password can't be empty")])
+        validators=[DataRequired(message="Please enter email"), Email(message='The email is wrong')])
+    password = PasswordField(validators=[DataRequired(message="Please enter the password"),
+                                         Length(6, 18, message='Password length should be between 6 and 18')])
     remember = BooleanField()
 
 
