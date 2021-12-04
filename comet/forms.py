@@ -43,7 +43,8 @@ class LoginForm(FlaskForm):
 
 
 class CategoryForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired(), Length(1, 30)])
+    name = StringField('Name', validators=[DataRequired(message='The category name cannot be empty'), Length(1, 50)])
+    description = StringField('Description', validators=[Length(max=200)])
     submit = SubmitField()
 
     def validate_name(self, field):

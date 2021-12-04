@@ -29,7 +29,8 @@ def new_category():
 
     if form.validate_on_submit():
         name = form.name.data
-        category = Category(name=name)
+        desc = form.description.data
+        category = Category(name=name, description=desc)
         # save to db
         db.session.add(category)
         db.session.commit()
