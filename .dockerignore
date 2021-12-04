@@ -5,3 +5,6 @@ migrations/
 doc/
 selenium/
 test/
+video/
+*.png
+*.jpg
