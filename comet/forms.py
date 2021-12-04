@@ -22,10 +22,10 @@ class RegisterForm(FlaskForm):
     email = StringField(
         validators=[DataRequired(message='Email is required'), Email(message='The email is wrong'),
                     Length(10, 100, message='Email length should be between 10 and 100')])
-    password = PasswordField(validators=[DataRequired(message=f'Password is required'),
+    password = PasswordField(validators=[DataRequired(message='Password is required'),
                                          Length(6, 18, message='Password length should be between 6 and 18')])
     password2 = PasswordField(
-        validators=[DataRequired(message=f'Password is required'),
+        validators=[DataRequired(message='Password is required'),
                     Length(6, 18, message='Password length should be between 6 and 18'),
                     EqualTo('password', message='Password repetition must be equal to password')])
 
@@ -40,6 +40,8 @@ class LoginForm(FlaskForm):
     password = PasswordField(validators=[DataRequired(message="Please enter the password"),
                                          Length(6, 18, message='Password length should be between 6 and 18')])
     remember = BooleanField()
+
+    submit = SubmitField()
 
 
 class CategoryForm(FlaskForm):

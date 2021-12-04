@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% from 'bootstrap/form.html' import render_form %}
 {% block content %}
 
 <div class="container h-100">
@@ -8,35 +8,36 @@
     </div>
     <div class="row h-100 justify-content-center align-items-center">
 
-        <form action="{{ url_for('auth.login') }}" method="POST"
-              class="form col-6" role="form">
-
-            <div class="form-group required"><label class="form-control-label" for="email">Email</label>
-
-                <input class="form-control" id="email" name="email" type="text"
-                        value="{{ form.data['email'] | default('', true)  }}">
-
-            </div>
-
-
-            <div class="form-group required"><label class="form-control-label" for="password">Password</label>
-
-                <input class="form-control" id="password" name="password"  type="password"
-                       value="{{ form.data['password'] | default('', true) }}">
-
-            </div>
-
-
-            <div class="form-group form-check"><input class="form-check-input" id="remember" name="remember"
-                                                      type="checkbox" value="y">
-                <label class="form-check-label" for="remember">Remember me</label>
-            </div>
-
-
-            <input class="btn btn-primary btn-md" id="submit" name="submit" type="submit" value="Sign in">
-
-
-        </form>
+{#        <form action="{{ url_for('auth.login') }}" method="POST"#}
+{#              class="form col-6" role="form">#}
+{##}
+{#            <div class="form-group required"><label class="form-control-label" for="email">Email</label>#}
+{##}
+{#                <input class="form-control" id="email" name="email" type="text"#}
+{#                        value="{{ form.data['email'] | default('', true)  }}">#}
+{##}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="form-group required"><label class="form-control-label" for="password">Password</label>#}
+{##}
+{#                <input class="form-control" id="password" name="password"  type="password"#}
+{#                       value="{{ form.data['password'] | default('', true) }}">#}
+{##}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="form-group form-check"><input class="form-check-input" id="remember" name="remember"#}
+{#                                                      type="checkbox" value="y">#}
+{#                <label class="form-check-label" for="remember">Remember me</label>#}
+{#            </div>#}
+{##}
+{##}
+{#            <input class="btn btn-primary btn-md" id="submit" name="submit" type="submit" value="Sign in">#}
+{##}
+{##}
+{#        </form>#}
+        {{ render_form(form, extra_classes='col-6') }}
     </div>
 </div>
 

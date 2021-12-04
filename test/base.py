@@ -8,6 +8,7 @@
     :license: MIT, see LICENSE for more details.
 """
 import unittest
+from flask import url_for
 from comet import create_app
 from comet.ext import db
 from comet.models import User
@@ -34,3 +35,13 @@ class BaseTestCase(unittest.TestCase):
     def tearDown(self) -> None:
         db.drop_all()
         self.context.pop()
+
+    def login(self, email=None, password=None):
+        if email is None and password is None:
+            email = 'admin@admin.com'
+            password = '12345678'
+
+        return self.client.post(url_for('auth.login'), data=dict(email=email, password=password), follow_redirects=True)
+
+    def logout(self):
+        return self.client.get(url_for('auth.logout'), follow_redirects=True)

@@ -34,9 +34,9 @@ def login():
                 flash(f'Welcome back {user.username}.', 'info')
                 return redirect(url_for('blog.index'))
 
-            flash(f'Login failed, please confirm whether the email or password is correct', 'warning')
+            flash('Login failed, please confirm whether the email or password is correct', 'warning')
         else:
-            flash(f'No account info.', 'warning')
+            flash('No account info.', 'warning')
     return render_template('login.html', form=form)
 
 

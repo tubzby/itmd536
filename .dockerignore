@@ -1,10 +1,11 @@
 venv/
 *.db
 migrations/
-.md
+*.md
 doc/
 selenium/
 test/
 video/
 *.png
 *.jpg
+htmlcov/

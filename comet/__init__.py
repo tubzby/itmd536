@@ -13,7 +13,7 @@ import click
 
 from comet.settings import config_dict
 from comet.ext import db, migrate, login_manager, moment, bootstrap, ckeditor
-from comet.models import User, Category, Post
+from comet.models import User, Category
 from comet.blueprints.blog import blog_bp
 from comet.blueprints.auth import auth_bp
 from comet.blueprints.admin import admin_bp
@@ -109,9 +109,9 @@ def _register_commands(app):
     def init_db(drop):
 
         if drop:
-            click.confirm(f'This action will delete the database, do you want to continue?', abort=True)
+            click.confirm('This action will delete the database, do you want to continue?', abort=True)
             db.drop_all()
-            click.echo(f'delete tables.')
+            click.echo('delete tables.')
 
         db.create_all()
-        click.echo(f'Initializing the database.')
+        click.echo('Initializing the database.')
