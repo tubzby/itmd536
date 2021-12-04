@@ -31,7 +31,7 @@
                         <form class="inline" method="post"
                               action="{{ url_for('admin.delete_category', category_id=category.id) }}">
                             <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Are you sure?');">Delete
+                                    onclick="return confirm('Are you sure to delete the category {{ category.name }}');">Delete
                             </button>
                         </form>
                     </td>
